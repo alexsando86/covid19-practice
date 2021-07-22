@@ -1,0 +1,92 @@
+import React, { useEffect, useState } from "react";
+import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Heading } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import Layout from "../Layout";
+import moment from "moment";
+import SidoInfoStateChart from "../chart/SidoInfoStateChart";
+import { sidoInfoDispatch } from "../../redux/sidoInfoReducer";
+
+const Covid19State = () => {
+	const { sidoInfoReducer } = useSelector((state: any) => ({ sidoInfoReducer: state.sidoInfoReducer.data }));
+
+	type itemTypes = {
+		createDt: string;
+		deathCnt: number;
+		defCnt: number;
+		gubun: string;
+		gubunCn: string;
+		gubunEn: string;
+		incDec: number;
+		isolClearCnt: number;
+		isolIngCnt: number;
+		localOccCnt: number;
+		overFlowCnt: number;
+		qurRate: string;
+		seq: number;
+		stdDay: string;
+	};
+
+	const DEF_CNT = sidoInfoReducer
+		?.map((item: itemTypes) => item)
+		.sort((a: any, b: any) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
+		.slice(-18);
+
+	// 도시명
+	const GUBUN = DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.gubun);
+
+	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(true);
+	const setLoadingState = (state: boolean) => {
+		setIsLoading(state);
+	};
+
+	useEffect(() => {
+		// 코로나19 시·도발생 현황
+		dispatch(
+			sidoInfoDispatch({
+				url: "/openapi/service/rest/Covid19/getCovid19SidoInfStateJson",
+				setLoadingState,
+			})
+		);
+	}, []);
+
+	return (
+		<Layout title="공공데이터활용지원센터_보건복지부 코로나19 시·도발생 현황">
+			<SidoInfoStateChart DEF_CNT={DEF_CNT} GUBUN={GUBUN} isLoading={isLoading} sidoInfoReducer={sidoInfoReducer && sidoInfoReducer} />
+			<Flex flexDirection="column" h="100%">
+				<Heading size="md" mb={4}>
+					누적 데이터
+				</Heading>
+				<Table variant="striped" size="sm" flex="1">
+					<TableCaption fontSize="md">시도현황</TableCaption>
+					<Thead>
+						<Tr>
+							<Th>도시명</Th>
+							<Th>확진자 수</Th>
+							<Th>격리중 환자수</Th>
+							<Th>격리 해제 수</Th>
+							<Th>전일대비 증감 수</Th>
+							<Th>해외유입 수</Th>
+							<Th>지역발생 수</Th>
+						</Tr>
+					</Thead>
+					<Tbody>
+						{DEF_CNT.map((city: itemTypes) => (
+							<Tr>
+								<Td>{city.gubun}</Td>
+								<Td>{city.defCnt}</Td>
+								<Td>{city.isolIngCnt}</Td>
+								<Td>{city.isolClearCnt}</Td>
+								<Td>{city.incDec}</Td>
+								<Td>{city.overFlowCnt}</Td>
+								<Td>{city.localOccCnt}</Td>
+							</Tr>
+						))}
+					</Tbody>
+				</Table>
+			</Flex>
+		</Layout>
+	);
+};
+
+export default Covid19State;
