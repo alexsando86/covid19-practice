@@ -30,7 +30,17 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 	};
 	setRgbaColor(DEF_CNT?.length);
 
-	const data = {
+	type dataTypes = {
+		labels: string[];
+		datasets: {
+			label: string[] | string;
+			data: number[];
+			backgroundColor: string[];
+			borderWidth: number;
+		}[];
+	};
+
+	const data: dataTypes = {
 		labels: GUBUN,
 		datasets: [
 			{
@@ -46,7 +56,7 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 		maintainAspectRatio: false,
 	};
 
-	const barData = {
+	const barData: dataTypes = {
 		labels: GUBUN,
 		datasets: [
 			{

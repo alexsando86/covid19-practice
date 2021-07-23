@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex } from "@chakra-ui/react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 const Header = () => {
@@ -17,7 +17,7 @@ const Header = () => {
 							<Link to="/SidoInfoState">시·도발생 현황</Link>
 						</li>
 						<li>
-							<Link to="/genAgeCaseInfo">연령별·성별감염 현황</Link>
+							<Link to="/GenAgeCaseInfo">연령별·성별감염 현황</Link>
 						</li>
 						<li>해외발생 현황</li>
 					</ul>

@@ -62,11 +62,11 @@ const Covid19State = () => {
 					<SidoInfoStateChart DEF_CNT={DEF_CNT} GUBUN={GUBUN} isLoading={isLoading} sidoInfoReducer={sidoInfoReducer && sidoInfoReducer} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>
-							시·도발생 현황 <Box as="span" fontSize="sm">{`기준: ${moment(currentDay?.createDt).format("YYYY-MM-DD")}`}</Box>
+							시·도발생 현황
 						</Heading>
 
 						<Table variant="striped" size="sm" w="100%" h="100%" flex="1">
-							{/* <TableCaption fontSize="md">시도현황</TableCaption> */}
+							<TableCaption fontSize="md">{`${moment(currentDay?.createDt).format("YYYY-MM-DD")}`}</TableCaption>
 							<Thead>
 								<Tr>
 									<Th>도시명</Th>

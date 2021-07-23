@@ -1,13 +1,14 @@
 import * as React from "react";
-import { Box, ChakraProvider, Flex, theme } from "@chakra-ui/react";
+import { ChakraProvider, Flex, theme } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Header from "./component/Header";
-import "./index.css";
 import Footer from "./component/Footer";
 import { Route } from "react-router-dom";
+import "./index.css";
 import Covid19State from "./component/pages/Covid19State";
 import SidoInfoState from "./component/pages/SidoInfoState";
+import GenAgeCaseInfo from "./component/pages/GenAgeCaseInfo";
 
 export const App = () => {
 	useEffect(() => {
@@ -57,6 +58,7 @@ export const App = () => {
 
 				<Route path="/" exact component={Covid19State} />
 				<Route path="/SidoInfoState" component={SidoInfoState} />
+				<Route path="/GenAgeCaseInfo" component={GenAgeCaseInfo} />
 
 				<Footer />
 			</Flex>

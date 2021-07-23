@@ -8,13 +8,12 @@ const date = ("0" + today.getDate()).slice(-2);
 const getToday: string = `${year}${month}${date}`;
 
 const SERVICE_KEY: string = "HoRvXlHzt4YAth4rfQmkQUXibIMl%2BmmW24iZZ8mYKPg0B9ZAAtYr6kVBtCf2Yf4n2XQWjRnDXZzDvE2XoLwVkg%3D%3D";
+const BASE_URL = "http://openapi.data.go.kr";
 let queryParams = "?" + encodeURIComponent("ServiceKey") + "=" + SERVICE_KEY; /*Service Key*/
 queryParams += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent("1"); /* 페이지번호*/
 queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("10"); /* 한 페이지 결과 수 */
 queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent("20200310"); /* 검색할 생성일 시작 */
 queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(getToday); /* 검색할 생성일 종료 */
-
-console.log("SERVICE_KEY", queryParams);
 
 const fetchAPI = async (url: string) =>
 	await axios
@@ -29,7 +28,6 @@ const fetchAPI = async (url: string) =>
 					},
 				},
 			} = response;
-
 			return item;
 		})
 		.catch((error) => console.log(error));
