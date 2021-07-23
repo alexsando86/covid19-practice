@@ -1,4 +1,7 @@
 import axios from "axios";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const today: Date = new Date();
 const year = today.getFullYear(); // 년도
@@ -7,8 +10,8 @@ const date = ("0" + today.getDate()).slice(-2);
 
 const getToday: string = `${year}${month}${date}`;
 
-const SERVICE_KEY: string = "HoRvXlHzt4YAth4rfQmkQUXibIMl%2BmmW24iZZ8mYKPg0B9ZAAtYr6kVBtCf2Yf4n2XQWjRnDXZzDvE2XoLwVkg%3D%3D";
-const BASE_URL = "http://openapi.data.go.kr";
+const SERVICE_KEY: string | undefined = process.env.REACT_APP_SERVICE_KEY;
+
 let queryParams = "?" + encodeURIComponent("ServiceKey") + "=" + SERVICE_KEY; /*Service Key*/
 queryParams += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent("1"); /* 페이지번호*/
 queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("10"); /* 한 페이지 결과 수 */
