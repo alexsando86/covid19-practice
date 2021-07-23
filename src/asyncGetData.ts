@@ -2,6 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 
 dotenv.config();
+console.log(process.env.NODE_ENV);
 
 const today: Date = new Date();
 const year = today.getFullYear(); // 년도
@@ -18,9 +19,10 @@ queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(
 queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent("20200310"); /* 검색할 생성일 시작 */
 queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(getToday); /* 검색할 생성일 종료 */
 
-const fetchAPI = async (url: string) =>
-	await axios
-		.get(url + queryParams)
+const fetchAPI = async (url: string) => {
+	const BASE_URL = process.env.NODE_ENV === "development" ? "" : "http://openapi.data.go.kr";
+	return await axios
+		.get(BASE_URL + url + queryParams)
 		.then((response) => {
 			const {
 				data: {
@@ -34,6 +36,7 @@ const fetchAPI = async (url: string) =>
 			return item;
 		})
 		.catch((error) => console.log(error));
+};
 
 export const createPromiseThunk = (type: string) => {
 	let name: string = "";
