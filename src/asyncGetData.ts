@@ -21,8 +21,11 @@ queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponen
 
 const fetchAPI = async (url: string) => {
 	const BASE_URL = process.env.NODE_ENV === "development" ? "" : "http://openapi.data.go.kr";
-	return await axios
-		.get(BASE_URL + url + queryParams)
+
+	return await axios({
+		method: "GET",
+		url: url + queryParams,
+	})
 		.then((response) => {
 			const {
 				data: {
