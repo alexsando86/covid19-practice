@@ -10,9 +10,16 @@ ReactDOM.render(
 	<React.StrictMode>
 		<ColorModeScript />
 		<Provider store={store}>
-			<HashRouter>
-				<App />
-			</HashRouter>
+			{process.env.NODE_ENV === "development" && (
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			)}
+			{process.env.NODE_ENV === "production" && (
+				<HashRouter>
+					<App />
+				</HashRouter>
+			)}
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")

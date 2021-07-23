@@ -24,7 +24,7 @@ const fetchAPI = async (url: string) => {
 
 	return await axios({
 		method: "GET",
-		url: url + queryParams,
+		url: process.env.NODE_ENV === "development" ? url + queryParams : `https://cors.bridged.cc/http://openapi.data.go.kr${url + queryParams}`,
 	})
 		.then((response) => {
 			const {
