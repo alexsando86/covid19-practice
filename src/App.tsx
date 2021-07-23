@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ChakraProvider, Flex, theme } from "@chakra-ui/react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
-import { useEffect } from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import { Route } from "react-router-dom";
@@ -11,43 +10,6 @@ import SidoInfoState from "./component/pages/SidoInfoState";
 import GenAgeCaseInfo from "./component/pages/GenAgeCaseInfo";
 
 export const App = () => {
-	useEffect(() => {
-		// 코로나19해외발생 현황 상세설명
-		// dispatch(
-		// 	overseasDispatch({
-		// 		url: "/openapi/service/rest/Covid19/getCovid19NatInfStateJson",
-		// 		setLoadingState,
-		// 	})
-		// );
-		// 코로나19 시·도발생 현황
-		// dispatch(
-		// 	sidoInfoDispatch({
-		// 		url: "/openapi/service/rest/Covid19/getCovid19SidoInfStateJson",
-		// 		setLoadingState,
-		// 	})
-		// );
-		// 코로나19 연령별·성별감염 현황
-		// dispatch(
-		// 	genAgeCaseInfoDispatch({
-		// 		url: "/openapi/service/rest/Covid19/getCovid19GenAgeCaseInfJson",
-		// 		setLoadingState,
-		// 	})
-		// );
-		// 코로나19 감염 현황
-		// dispatch(
-		// 	covid19InfoDispatch({
-		// 		url: "/openapi/service/rest/Covid19/getCovid19InfStateJson",
-		// 		setLoadingState,
-		// 	})
-		// );
-		// const { covid19InfooReducer, genAgeCaseInfoReducer, overseasReducer, sidoInfoReducer } = useSelector((state: any) => ({
-		// 	covid19InfooReducer: state.covid19InfooReducer.data,
-		// 	genAgeCaseInfoReducer: state.genAgeCaseInfoReducer,
-		// 	overseasReducer: state.overseasReducer,
-		// 	sidoInfoReducer: state.sidoInfoReducer,
-		// }));
-	}, []);
-
 	return (
 		<ChakraProvider theme={theme}>
 			<Flex flexDirection="column" w="100vw" h="100vh">

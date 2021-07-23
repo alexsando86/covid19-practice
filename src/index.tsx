@@ -4,15 +4,15 @@ import { Provider } from "react-redux";
 import ReactDOM from "react-dom";
 import { App } from "./App";
 import store from "./redux/";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
 
 ReactDOM.render(
 	<React.StrictMode>
 		<ColorModeScript />
 		<Provider store={store}>
-			<BrowserRouter>
+			<HashRouter>
 				<App />
-			</BrowserRouter>
+			</HashRouter>
 		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
