@@ -1,9 +1,8 @@
 import React from "react";
-import { Doughnut } from "react-chartjs-2";
-import SpinnerBox from "../SpinnerBox";
-import moment from "moment";
+import { Bar, Doughnut } from "react-chartjs-2";
+import { Box, Grid } from "@chakra-ui/react";
 
-const SidoInfoStateChart = ({ DEF_CNT, GUBUN, isLoading, sidoInfoReducer }: any) => {
+const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 	type itemTypes = {
 		createDt: string;
 		deathCnt: number;
@@ -20,14 +19,6 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN, isLoading, sidoInfoReducer }: any)
 		seq: number;
 		stdDay: string;
 	};
-
-	// const DEF_CNT = sidoInfoReducer
-	// 	?.map((item: itemTypes) => item)
-	// 	.sort((a: any, b: any) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
-	// 	.slice(-18);
-
-	// // 도시명
-	// const GUBUN = DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.gubun);
 
 	// Random Color
 	let colorArray: string[] = [];
@@ -46,25 +37,45 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN, isLoading, sidoInfoReducer }: any)
 				label: GUBUN,
 				data: DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.defCnt),
 				backgroundColor: colorArray,
-				// borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)", "rgba(75, 192, 192, 1)", "rgba(153, 102, 255, 1)", "rgba(255, 159, 64, 1)"],
 				borderWidth: 1,
 			},
 		],
 	};
 
 	const options = {
-		legend: {
-			position: "left",
-			align: "middle",
+		maintainAspectRatio: false,
+	};
+
+	const barData = {
+		labels: GUBUN,
+		datasets: [
+			{
+				label: "지역별 현황",
+				data: DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.defCnt),
+				backgroundColor: colorArray,
+				borderWidth: 1,
+			},
+		],
+	};
+
+	const barOptions = {
+		plugins: {
+			legend: {
+				display: false, // label 숨기기
+			},
 		},
 		maintainAspectRatio: false,
 	};
 
 	return (
-		<>
-			{isLoading && <SpinnerBox />}
-			{!isLoading && <Doughnut data={data} options={options} />}
-		</>
+		<Grid templateRows="repeat(2,1fr)" w="100%" h="100%">
+			<Box p={4}>
+				<Doughnut data={data} options={options} />
+			</Box>
+			<Box p={4}>
+				<Bar data={barData} options={barOptions} />
+			</Box>
+		</Grid>
 	);
 };
 

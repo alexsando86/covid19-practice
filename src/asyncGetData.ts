@@ -14,6 +14,8 @@ queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(
 queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent("20200310"); /* 검색할 생성일 시작 */
 queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(getToday); /* 검색할 생성일 종료 */
 
+console.log("SERVICE_KEY", queryParams);
+
 const fetchAPI = async (url: string) =>
 	await axios
 		.get(url + queryParams)

@@ -15,7 +15,7 @@ const Layout = ({ children, title }: childrenProps) => {
 			<Grid templateColumns="repeat(2, 1fr)" gap={6} h="100%" p={4}>
 				{children instanceof Array &&
 					children.map((child, index) => (
-						<Flex alignItems="center" flex="1" key={index} w="100%" h="100%" p={4} boxShadow="base">
+						<Flex alignItems="center" key={index} w="100%" h="100%" p={4} boxShadow="base">
 							{child}
 						</Flex>
 					))}

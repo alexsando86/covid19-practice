@@ -1,11 +1,6 @@
-import { Box } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { Line, Bar } from "react-chartjs-2";
-import { useDispatch } from "react-redux";
-import { covid19InfoDispatch } from "../../redux/covid19InfooReducer";
-import SpinnerBox from "../SpinnerBox";
+import { Line } from "react-chartjs-2";
 
-const CovidTotalState = ({ isLoading, covid19InfooReducer }: any) => {
+const CovidTotalState = ({ covid19InfooReducer }: any) => {
 	const STATE_DT =
 		covid19InfooReducer &&
 		covid19InfooReducer
@@ -61,16 +56,7 @@ const CovidTotalState = ({ isLoading, covid19InfooReducer }: any) => {
 		maintainAspectRatio: false, // false로 설정 시 사용자 정의 크기에 따라 그래프 크기가 결정됨.
 	};
 
-	return (
-		<>
-			{isLoading && <SpinnerBox />}
-			{!isLoading && (
-				<>
-					<Line data={data} options={options} />
-				</>
-			)}
-		</>
-	);
+	return <Line data={data} options={options} />;
 };
 
 export default CovidTotalState;
