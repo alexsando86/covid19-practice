@@ -2,12 +2,13 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
+import alex from "./images/alex.jpg";
 
 const Header = () => {
 	return (
 		<>
 			<Flex justifyContent="space-between" alignItems="center">
-				<img className={styles.covid19} src="./images/covid19.jpg" alt="" width="180px" />
+				<img className={styles.covid19} src="./images/alex.jpg" alt="alex" width="60px" />
 				<nav>
 					<ul className={styles.nav}>
 						<li>
