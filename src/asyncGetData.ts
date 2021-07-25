@@ -20,8 +20,6 @@ queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURICompon
 queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(getToday); /* 검색할 생성일 종료 */
 
 const fetchAPI = async (url: string) => {
-	const BASE_URL = process.env.NODE_ENV === "development" ? "" : "http://openapi.data.go.kr";
-
 	return await axios({
 		method: "GET",
 		url: process.env.NODE_ENV === "development" ? url + queryParams : `https://cors.bridged.cc/http://openapi.data.go.kr${url + queryParams}`,
@@ -66,7 +64,7 @@ export const createPromiseThunk = (type: string) => {
 				const payload = await fetchAPI(url);
 				dispatch({ type: `${type}_SUCCESS`, payload });
 				setLoadingState(false);
-				console.log(`${name}: ${type}`, payload);
+				// console.log(`${name}: ${type}`, payload);
 			} catch (err) {
 				console.log(err);
 			}

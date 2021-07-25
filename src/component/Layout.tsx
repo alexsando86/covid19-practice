@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Grid, Heading } from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, SimpleGrid } from "@chakra-ui/react";
 
 interface childrenProps {
 	children: JSX.Element[] | JSX.Element;
@@ -12,14 +12,14 @@ const Layout = ({ children, title }: childrenProps) => {
 			<Heading as="h2" size="md" p={4}>
 				{title}
 			</Heading>
-			<Grid templateColumns="repeat(2, 1fr)" gap={6} h="100%" p={4}>
+			<SimpleGrid minChildWidth="375px" gap={6} w="100%" h="100%" p={4}>
 				{children instanceof Array &&
 					children.map((child, index) => (
 						<Flex alignItems="center" key={index} w="100%" h="100%" p={4} boxShadow="base">
 							{child}
 						</Flex>
 					))}
-			</Grid>
+			</SimpleGrid>
 		</>
 	);
 };

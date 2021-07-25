@@ -12,6 +12,7 @@ const initialState = {
 const getOverseasData = (state = initialState, action: any) => {
 	switch (action.type) {
 		case OVERSEAS_SUCCESS:
+			console.log(state);
 			return {
 				...state,
 				data: action.payload,
