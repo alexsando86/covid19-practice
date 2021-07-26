@@ -7,16 +7,18 @@ console.log(process.env.NODE_ENV);
 const today: Date = new Date();
 const year = today.getFullYear(); // 년도
 const month = ("0" + (today.getMonth() + 1)).slice(-2); // 월
+const month2 = ("0" + today.getMonth()).slice(-2); // 전월
 const date = ("0" + today.getDate()).slice(-2);
 
 const getToday: string = `${year}${month}${date}`;
+const monthAgo: string = `${year}${month2}${date}`;
 
 const SERVICE_KEY: string | undefined = process.env.REACT_APP_SERVICE_KEY;
 
 let queryParams = "?" + encodeURIComponent("ServiceKey") + "=" + SERVICE_KEY; /*Service Key*/
 queryParams += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent("1"); /* 페이지번호*/
 queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("10"); /* 한 페이지 결과 수 */
-queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent("20200310"); /* 검색할 생성일 시작 */
+queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(monthAgo); /* 검색할 생성일 시작 */
 queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(getToday); /* 검색할 생성일 종료 */
 
 const fetchAPI = async (url: string) => {
@@ -64,7 +66,7 @@ export const createPromiseThunk = (type: string) => {
 				const payload = await fetchAPI(url);
 				dispatch({ type: `${type}_SUCCESS`, payload });
 				setLoadingState(false);
-				// console.log(`${name}: ${type}`, payload);
+				console.log(`${name}: ${type}`, payload);
 			} catch (err) {
 				console.log(err);
 			}

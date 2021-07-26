@@ -8,6 +8,7 @@ import "./index.css";
 import Covid19State from "./component/pages/Covid19State";
 import SidoInfoState from "./component/pages/SidoInfoState";
 import GenAgeCaseInfo from "./component/pages/GenAgeCaseInfo";
+import NatInfoState from "./component/pages/NatInfoState";
 
 export const App = () => {
 	return (
@@ -21,6 +22,7 @@ export const App = () => {
 				<Route path="/" exact component={Covid19State} />
 				<Route path="/SidoInfoState" component={SidoInfoState} />
 				<Route path="/GenAgeCaseInfo" component={GenAgeCaseInfo} />
+				<Route path="/NatInfoState" component={NatInfoState} />
 
 				<Footer />
 			</Flex>

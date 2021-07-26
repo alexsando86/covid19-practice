@@ -2,7 +2,6 @@ import React from "react";
 import { Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import alex from "./images/alex.jpg";
 
 const Header = () => {
 	return (
@@ -20,7 +19,9 @@ const Header = () => {
 						<li>
 							<Link to="/GenAgeCaseInfo">연령별·성별감염 현황</Link>
 						</li>
-						<li>해외발생 현황</li>
+						<li>
+							<Link to="/NatInfoState">해외발생 현황</Link>
+						</li>
 					</ul>
 				</nav>
 			</Flex>

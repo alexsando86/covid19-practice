@@ -12,10 +12,10 @@ const Layout = ({ children, title }: childrenProps) => {
 			<Heading as="h2" size="md" p={4}>
 				{title}
 			</Heading>
-			<SimpleGrid minChildWidth="375px" gap={6} w="100%" h="100%" p={4}>
+			<SimpleGrid minChildWidth="375px" gap={6} w="100%" h="100%" p={4} overflow="hidden">
 				{children instanceof Array &&
 					children.map((child, index) => (
-						<Flex alignItems="center" key={index} w="100%" h="100%" p={4} boxShadow="base">
+						<Flex alignItems="center" key={index} w="100%" h="100%" p={4} boxShadow="base" overflow="hidden">
 							{child}
 						</Flex>
 					))}
