@@ -1,8 +1,13 @@
 .nav {
+	font-size: 12px;
+}
+.nav ul {
 	display: flex;
 	height: 50px;
 	align-items: center;
 }
 .nav li {
+	text-align: center;
+	line-height: 16px;
 	margin-left: 15px;
 }

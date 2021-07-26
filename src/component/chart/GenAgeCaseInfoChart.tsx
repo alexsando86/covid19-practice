@@ -25,7 +25,7 @@ const GenAgeCaseInfoChart = ({ CREACT_DT }: any) => {
 				display: false,
 			},
 		},
-		// maintainAspectRatio: false,
+		maintainAspectRatio: false,
 	};
 
 	const lineData = {

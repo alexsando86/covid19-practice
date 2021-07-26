@@ -6,10 +6,10 @@ import styles from "./Header.module.css";
 const Header = () => {
 	return (
 		<>
-			<Flex justifyContent="space-between" alignItems="center">
+			<Flex className={styles.nav} justifyContent="space-between" alignItems="center" flexDirection={{ md: "row" }} fontSize={{ md: "15px" }}>
 				<img className={styles.covid19} src="./images/alex.jpg" alt="alex" width="60px" />
 				<nav>
-					<ul className={styles.nav}>
+					<ul>
 						<li>
 							<Link to="/">코로나19 감염 현황</Link>
 						</li>
