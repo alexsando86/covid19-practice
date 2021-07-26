@@ -22,7 +22,7 @@ const Covid19State = () => {
 		// 코로나19 감염 현황
 		dispatch(
 			covid19InfoDispatch({
-				url: "/openapi/service/rest/Covid19/getCovid19InfStateJson",
+				url: "getCovid19InfStateJson",
 				setLoadingState,
 			})
 		);

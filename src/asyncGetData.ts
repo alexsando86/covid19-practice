@@ -22,7 +22,7 @@ queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponen
 const fetchAPI = async (url: string) => {
 	return await axios({
 		method: "GET",
-		url: process.env.NODE_ENV === "development" ? url + queryParams : `https://cors.bridged.cc/http://openapi.data.go.kr${url + queryParams}`,
+		url: process.env.NODE_ENV === "development" ? `/openapi/service/rest/Covid19/${url + queryParams}` : `https://cors.bridged.cc/http://openapi.data.go.kr/openapi/service/rest/Covid19/${url + queryParams}`,
 	})
 		.then((response) => {
 			const {

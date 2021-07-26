@@ -20,7 +20,7 @@ const GenAgeCaseInfo = () => {
 		// 코로나19 연령별·성별감염 현황
 		dispatch(
 			genAgeCaseInfoDispatch({
-				url: "/openapi/service/rest/Covid19/getCovid19GenAgeCaseInfJson",
+				url: "getCovid19GenAgeCaseInfJson",
 				setLoadingState,
 			})
 		);

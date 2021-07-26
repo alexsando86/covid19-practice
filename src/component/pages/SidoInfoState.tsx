@@ -48,7 +48,7 @@ const Covid19State = () => {
 		// 코로나19 시·도발생 현황
 		dispatch(
 			sidoInfoDispatch({
-				url: "/openapi/service/rest/Covid19/getCovid19SidoInfStateJson",
+				url: "getCovid19SidoInfStateJson",
 				setLoadingState,
 			})
 		);
