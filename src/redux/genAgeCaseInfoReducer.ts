@@ -40,7 +40,6 @@ const initialState: genAgeTypes = {
 const genAgeCaseInfoData = (state = initialState, action: any) => {
 	switch (action.type) {
 		case GENAGECASEINFO_SUCCESS:
-			console.log(action.payload);
 			return {
 				...state,
 				data: action.payload,

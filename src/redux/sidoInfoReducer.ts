@@ -52,7 +52,6 @@ const initialState: sidoDataTypes = {
 const getSIDOINFOData = (state = initialState, action: any) => {
 	switch (action.type) {
 		case SIDOINFO_SUCCESS:
-			console.log(state);
 			return {
 				...state,
 				data: action.payload,

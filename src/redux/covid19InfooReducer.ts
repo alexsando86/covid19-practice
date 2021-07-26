@@ -55,7 +55,6 @@ const covid19InfoData = (state = initialState, action: any) => {
 				...state,
 			};
 		case COVID19INFO_SUCCESS:
-			console.log(state);
 			return {
 				...state,
 				data: action.payload,

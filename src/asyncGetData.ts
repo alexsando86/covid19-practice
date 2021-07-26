@@ -14,9 +14,6 @@ const yesterday = ("0" + (today.getDate() - 1)).slice(-2);
 const getToday: string = `${year}${month}${date}`;
 const getYesterday: string = `${year}${month2}${yesterday}`;
 
-console.log(getToday);
-console.log(getYesterday);
-
 const SERVICE_KEY: string | undefined = process.env.REACT_APP_SERVICE_KEY;
 
 let queryParams = "?" + encodeURIComponent("ServiceKey") + "=" + SERVICE_KEY; /*Service Key*/
