@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Heading, Box } from "@chakra-ui/react";
+import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Heading } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../Layout";
 import moment from "moment";

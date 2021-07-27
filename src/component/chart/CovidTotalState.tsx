@@ -1,3 +1,4 @@
+import { useColorModeValue } from "@chakra-ui/react";
 import { Line } from "react-chartjs-2";
 
 const CovidTotalState = ({ covid19InfooReducer }: any) => {
@@ -39,19 +40,36 @@ const CovidTotalState = ({ covid19InfooReducer }: any) => {
 		],
 	};
 
+	const lineGraph = useColorModeValue("rgba(229, 229, 229)", "rgba(255,255,255,0.5)");
+	const ticksColor = useColorModeValue("gray.200", "#fff");
 	const options = {
-		legend: {
-			display: false, // label 숨기기
+		plugins: {
+			legend: {
+				// display: false,
+				labels: {
+					color: ticksColor,
+				},
+			},
 		},
 		scales: {
-			yAxes: [
-				{
-					ticks: {
-						min: 0, // 스케일에 대한 최솟갓 설정, 0 부터 시작
-						stepSize: 1, // 스케일에 대한 사용자 고정 정의 값
-					},
+			xAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
 				},
-			],
+				ticks: {
+					color: ticksColor,
+				},
+			},
+			yAxis: {
+				ticks: {
+					color: ticksColor,
+				},
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
+			},
 		},
 		// responsive: false,
 		maintainAspectRatio: false, // false로 설정 시 사용자 정의 크기에 따라 그래프 크기가 결정됨.

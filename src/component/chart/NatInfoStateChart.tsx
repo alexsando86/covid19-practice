@@ -1,3 +1,4 @@
+import { useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { Bar } from "react-chartjs-2";
 
@@ -20,6 +21,9 @@ const NatInfoStateChart = ({ CREATE_DT }: any) => {
 	const NATIONAL_DATA = NATIONAL.map((item: any) => item.natDefCnt);
 	const NATIONAL_NAME = NATIONAL.map((item: any) => item.nationNm);
 
+	const lineGraph = useColorModeValue("rgba(229, 229, 229)", "rgba(255,255,255,0.5)");
+	const ticksColor = useColorModeValue("gray.200", "#fff");
+
 	const data: dataTypes = {
 		labels: NATIONAL_NAME,
 		datasets: [
@@ -39,6 +43,26 @@ const NatInfoStateChart = ({ CREATE_DT }: any) => {
 		plugins: {
 			legend: {
 				display: false,
+			},
+		},
+		scales: {
+			xAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
+				ticks: {
+					color: ticksColor,
+				},
+			},
+			yAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
+				ticks: {
+					color: ticksColor,
+				},
 			},
 		},
 		maintainAspectRatio: false,

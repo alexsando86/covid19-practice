@@ -61,12 +61,12 @@ export const createPromiseThunk = (type: string) => {
 			return null;
 	}
 
-	return ({ url, setLoadingState }: { url: string; setLoadingState: any }) =>
+	return ({ url, setLoadingState }: { url: string; setLoadingState?: any }) =>
 		async (dispatch: any): Promise<void> => {
 			try {
 				const payload = await fetchAPI(url);
 				dispatch({ type: `${type}_SUCCESS`, payload });
-				setLoadingState(false);
+				setLoadingState && setLoadingState(false);
 				console.log(`${name}: ${type}`, payload);
 			} catch (err) {
 				console.log(err);

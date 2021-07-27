@@ -1,6 +1,6 @@
 import React from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
-import { Box, Grid } from "@chakra-ui/react";
+import { Box, Grid, useColorModeValue } from "@chakra-ui/react";
 
 const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 	type itemTypes = {
@@ -52,7 +52,38 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 		],
 	};
 
+	const lineGraph = useColorModeValue("rgba(229, 229, 229)", "rgba(255,255,255,0.5)");
+	const ticksColor = useColorModeValue("gray.200", "#fff");
+
 	const options = {
+		plugins: {
+			legend: {
+				// display: false,
+				labels: {
+					color: ticksColor,
+				},
+			},
+		},
+		scales: {
+			xAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
+				ticks: {
+					color: ticksColor,
+				},
+			},
+			yAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
+				ticks: {
+					color: ticksColor,
+				},
+			},
+		},
 		maintainAspectRatio: false,
 	};
 
@@ -72,6 +103,26 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 		plugins: {
 			legend: {
 				display: false, // label 숨기기
+			},
+		},
+		scales: {
+			xAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
+				ticks: {
+					color: ticksColor,
+				},
+			},
+			yAxis: {
+				ticks: {
+					color: ticksColor,
+				},
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+				},
 			},
 		},
 		maintainAspectRatio: false,

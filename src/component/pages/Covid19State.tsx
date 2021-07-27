@@ -7,11 +7,17 @@ import CovidTotalState from "../chart/CovidTotalState";
 import { covid19InfoDispatch } from "../../redux/covid19InfooReducer";
 import SpinnerBox from "../SpinnerBox";
 import { sidoItemTypes } from "./SidoInfoState";
-import { sidoInfoDispatch } from "../../redux/sidoInfoReducer";
 
 const Covid19State = () => {
-	const covid19InfooReducer = useSelector((state: any) => state.covid19InfooReducer.data);
-	const sidoInfoReducer = useSelector((state: any) => state.sidoInfoReducer.data);
+	const { covid19InfooReducer, sidoInfoReducer } = useSelector((state: any) => ({
+		covid19InfooReducer: state.covid19InfooReducer.data,
+		sidoInfoReducer: state.sidoInfoReducer.data,
+	}));
+
+	const DEF_CNT = sidoInfoReducer
+		?.map((item: sidoItemTypes) => item)
+		.sort((a: any, b: any) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
+		.slice(-18);
 
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);
@@ -27,14 +33,6 @@ const Covid19State = () => {
 				setLoadingState,
 			})
 		);
-
-		// 코로나19 시·도발생 현황
-		dispatch(
-			sidoInfoDispatch({
-				url: "getCovid19SidoInfStateJson",
-				setLoadingState,
-			})
-		);
 	}, []);
 
 	// stateDt기준 데이터정렬 가공
@@ -47,11 +45,9 @@ const Covid19State = () => {
 			.reverse();
 
 	// 오늘확진자 수
-	const DEF_CNT = sidoInfoReducer
-		?.map((item: sidoItemTypes) => item)
-		.sort((a: any, b: any) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
-		.slice(-18);
-	const INCDEC = DEF_CNT?.filter((filItem: sidoItemTypes) => filItem.gubun === "합계").map((item: sidoItemTypes) => item.incDec);
+	const CONFIRMED_CASE = DECIDE_CNT_TODAY?.find((item: { stateDt: number }) => item.stateDt.toString() === moment(new Date()).format("YYYYMMDD"));
+	const YESTERDAY_CONFIRMED_CASE = DECIDE_CNT_TODAY?.find((item: { stateDt: number }) => item.stateDt.toString() === (Number(moment(new Date()).format("YYYYMMDD")) - 1).toString());
+	const TODAY_CONFIRMED_CASE = CONFIRMED_CASE?.decideCnt - YESTERDAY_CONFIRMED_CASE?.decideCnt;
 
 	return (
 		<>
@@ -64,7 +60,7 @@ const Covid19State = () => {
 							누적 데이터
 						</Heading>
 						<Table variant="striped" size="sm" flex="1">
-							<TableCaption fontSize="md">{isNaN(INCDEC) ? "10시 이후 오늘의 확진자 수 확인 가능합니다." : `오늘 확진자 수 : ${INCDEC.toLocaleString()}명`}</TableCaption>
+							<TableCaption fontSize="md">{isNaN(TODAY_CONFIRMED_CASE) ? "10시 이후 오늘의 확진자 수 확인 가능합니다." : `오늘 확진자 수 : ${TODAY_CONFIRMED_CASE.toLocaleString()}명`}</TableCaption>
 							<Thead>
 								<Tr>
 									<Th>기준일</Th>
