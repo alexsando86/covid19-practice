@@ -10,10 +10,8 @@ import { sidoItemTypes } from "./SidoInfoState";
 import { sidoInfoDispatch } from "../../redux/sidoInfoReducer";
 
 const Covid19State = () => {
-	const { covid19InfooReducer, sidoInfoReducer } = useSelector((state: any) => ({
-		covid19InfooReducer: state.covid19InfooReducer.data,
-		sidoInfoReducer: state.sidoInfoReducer.data,
-	}));
+	const covid19InfooReducer = useSelector((state: any) => state.covid19InfooReducer.data);
+	const sidoInfoReducer = useSelector((state: any) => state.sidoInfoReducer.data);
 
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);
