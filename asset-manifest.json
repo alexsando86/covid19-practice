@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/covid19-practice/static/css/main.abd85d34.chunk.css",
-    "main.js": "/covid19-practice/static/js/main.0f0deabb.chunk.js",
-    "main.js.map": "/covid19-practice/static/js/main.0f0deabb.chunk.js.map",
+    "main.js": "/covid19-practice/static/js/main.d45634da.chunk.js",
+    "main.js.map": "/covid19-practice/static/js/main.d45634da.chunk.js.map",
     "runtime-main.js": "/covid19-practice/static/js/runtime-main.01bc7517.js",
     "runtime-main.js.map": "/covid19-practice/static/js/runtime-main.01bc7517.js.map",
-    "static/js/2.62984bb8.chunk.js": "/covid19-practice/static/js/2.62984bb8.chunk.js",
-    "static/js/2.62984bb8.chunk.js.map": "/covid19-practice/static/js/2.62984bb8.chunk.js.map",
+    "static/js/2.9d35da07.chunk.js": "/covid19-practice/static/js/2.9d35da07.chunk.js",
+    "static/js/2.9d35da07.chunk.js.map": "/covid19-practice/static/js/2.9d35da07.chunk.js.map",
     "index.html": "/covid19-practice/index.html",
     "static/css/main.abd85d34.chunk.css.map": "/covid19-practice/static/css/main.abd85d34.chunk.css.map",
-    "static/js/2.62984bb8.chunk.js.LICENSE.txt": "/covid19-practice/static/js/2.62984bb8.chunk.js.LICENSE.txt"
+    "static/js/2.9d35da07.chunk.js.LICENSE.txt": "/covid19-practice/static/js/2.9d35da07.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.01bc7517.js",
-    "static/js/2.62984bb8.chunk.js",
+    "static/js/2.9d35da07.chunk.js",
     "static/css/main.abd85d34.chunk.css",
-    "static/js/main.0f0deabb.chunk.js"
+    "static/js/main.d45634da.chunk.js"
   ]
 }
