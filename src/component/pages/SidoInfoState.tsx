@@ -7,33 +7,33 @@ import SidoInfoStateChart from "../chart/SidoInfoStateChart";
 import { sidoInfoDispatch } from "../../redux/sidoInfoReducer";
 import SpinnerBox from "../SpinnerBox";
 
+export type sidoItemTypes = {
+	createDt: string;
+	deathCnt: number;
+	defCnt: number;
+	gubun: string;
+	gubunCn: string;
+	gubunEn: string;
+	incDec: number;
+	isolClearCnt: number;
+	isolIngCnt: number;
+	localOccCnt: number;
+	overFlowCnt: number;
+	qurRate: string;
+	seq: number;
+	stdDay: string;
+};
+
 const Covid19State = () => {
 	const { sidoInfoReducer } = useSelector((state: any) => ({ sidoInfoReducer: state.sidoInfoReducer.data }));
 
-	type itemTypes = {
-		createDt: string;
-		deathCnt: number;
-		defCnt: number;
-		gubun: string;
-		gubunCn: string;
-		gubunEn: string;
-		incDec: number;
-		isolClearCnt: number;
-		isolIngCnt: number;
-		localOccCnt: number;
-		overFlowCnt: number;
-		qurRate: string;
-		seq: number;
-		stdDay: string;
-	};
-
 	const DEF_CNT = sidoInfoReducer
-		?.map((item: itemTypes) => item)
+		?.map((item: sidoItemTypes) => item)
 		.sort((a: any, b: any) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
 		.slice(-18);
 
 	// 도시명
-	const GUBUN = DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.gubun);
+	const GUBUN = DEF_CNT?.filter((filItem: sidoItemTypes) => filItem.gubun !== "합계").map((item: sidoItemTypes) => item.gubun);
 
 	// 기준날짜
 	const currentDay = DEF_CNT?.find((day: { createDt: string }) => moment(day.createDt).format("YYYYMMDD"));
@@ -79,7 +79,7 @@ const Covid19State = () => {
 								</Tr>
 							</Thead>
 							<Tbody>
-								{DEF_CNT?.map((city: itemTypes) => (
+								{DEF_CNT?.map((city: sidoItemTypes) => (
 									<Tr key={city.gubun}>
 										<Td>{city.gubun.toLocaleString()}</Td>
 										<Td>{city.defCnt.toLocaleString()}</Td>
