@@ -7,6 +7,7 @@ import CovidTotalState from "../chart/CovidTotalState";
 import { covid19InfoDispatch } from "../../redux/covid19InfooReducer";
 import SpinnerBox from "../SpinnerBox";
 import { sidoItemTypes } from "./SidoInfoState";
+import { sidoInfoDispatch } from "../../redux/sidoInfoReducer";
 
 const Covid19State = () => {
 	const { covid19InfooReducer, sidoInfoReducer } = useSelector((state: any) => ({
@@ -25,6 +26,14 @@ const Covid19State = () => {
 		dispatch(
 			covid19InfoDispatch({
 				url: "getCovid19InfStateJson",
+				setLoadingState,
+			})
+		);
+
+		// 코로나19 시·도발생 현황
+		dispatch(
+			sidoInfoDispatch({
+				url: "getCovid19SidoInfStateJson",
 				setLoadingState,
 			})
 		);
