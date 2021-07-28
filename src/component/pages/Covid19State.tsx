@@ -7,6 +7,7 @@ import CovidTotalState from "../chart/CovidTotalState";
 import { covid19InfoDispatch } from "../../redux/covid19InfooReducer";
 import SpinnerBox from "../SpinnerBox";
 import { sidoItemTypes } from "./SidoInfoState";
+import styles from "./Covid19State.module.css";
 
 const Covid19State = () => {
 	const { covid19InfooReducer, sidoInfoReducer } = useSelector((state: any) => ({
@@ -63,12 +64,12 @@ const Covid19State = () => {
 							<TableCaption fontSize="md">{isNaN(TODAY_CONFIRMED_CASE) ? "10시 이후 오늘의 확진자 수 확인 가능합니다." : `오늘 확진자 수 : ${TODAY_CONFIRMED_CASE.toLocaleString()}명`}</TableCaption>
 							<Thead>
 								<Tr>
-									<Th>기준일</Th>
-									<Th>확진자 수</Th>
-									<Th>격리해제 수</Th>
-									<Th>치료중 환자 수</Th>
-									<Th>사망자 수</Th>
-									<Th>확진률</Th>
+									<Th className={styles.th}>기준일</Th>
+									<Th className={styles.th}>확진자 수</Th>
+									<Th className={styles.th}>격리해제 수</Th>
+									<Th className={styles.th}>치료중 환자 수</Th>
+									<Th className={styles.th}>사망자 수</Th>
+									<Th className={styles.th}>확진률</Th>
 								</Tr>
 							</Thead>
 							<Tbody>

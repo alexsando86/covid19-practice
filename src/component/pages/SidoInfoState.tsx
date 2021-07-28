@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Heading } from "@chakra-ui/react";
+import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Heading, Box } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../Layout";
 import moment from "moment";
 import SidoInfoStateChart from "../chart/SidoInfoStateChart";
 import { sidoInfoDispatch } from "../../redux/sidoInfoReducer";
 import SpinnerBox from "../SpinnerBox";
+import styles from "./SidoInfoState.module.css";
 
 export type sidoItemTypes = {
 	createDt: string;
@@ -72,33 +73,35 @@ const Covid19State = () => {
 							시·도발생 현황
 						</Heading>
 
-						<Table variant="striped" size="sm" w="100%" h="100%" flex="1">
-							<TableCaption fontSize="md">{`${moment(currentDay?.createDt).format("YYYY-MM-DD")}`}</TableCaption>
-							<Thead>
-								<Tr>
-									<Th>도시명</Th>
-									<Th>확진자 수</Th>
-									<Th>격리중 환자수</Th>
-									<Th>격리 해제 수</Th>
-									<Th>전일대비 증감 수</Th>
-									<Th>해외유입 수</Th>
-									<Th>지역발생 수</Th>
-								</Tr>
-							</Thead>
-							<Tbody>
-								{hangleSort?.map((city: sidoItemTypes) => (
-									<Tr key={city.gubun}>
-										<Td>{city.gubun.toLocaleString()}</Td>
-										<Td>{city.defCnt.toLocaleString()}</Td>
-										<Td>{city.isolIngCnt.toLocaleString()}</Td>
-										<Td>{city.isolClearCnt.toLocaleString()}</Td>
-										<Td>{city.incDec.toLocaleString()}</Td>
-										<Td>{city.overFlowCnt.toLocaleString()}</Td>
-										<Td>{city.localOccCnt.toLocaleString()}</Td>
+						<Box h="100%" overflow="hidden" overflowY="auto" flex="1">
+							<Table variant="striped" size="sm" w="100%" h="100%" flex="1">
+								<TableCaption fontSize="md">{`${moment(currentDay?.createDt).format("YYYY-MM-DD")}`}</TableCaption>
+								<Thead>
+									<Tr>
+										<Th className={styles.th}>도시명</Th>
+										<Th className={styles.th}>확진자 수</Th>
+										<Th className={styles.th}>격리중 환자수</Th>
+										<Th className={styles.th}>격리 해제 수</Th>
+										<Th className={styles.th}>전일대비 증감 수</Th>
+										<Th className={styles.th}>해외유입 수</Th>
+										<Th className={styles.th}>지역발생 수</Th>
 									</Tr>
-								))}
-							</Tbody>
-						</Table>
+								</Thead>
+								<Tbody>
+									{hangleSort?.map((city: sidoItemTypes) => (
+										<Tr key={city.gubun}>
+											<Td>{city.gubun.toLocaleString()}</Td>
+											<Td>{city.defCnt.toLocaleString()}</Td>
+											<Td>{city.isolIngCnt.toLocaleString()}</Td>
+											<Td>{city.isolClearCnt.toLocaleString()}</Td>
+											<Td>{city.incDec.toLocaleString()}</Td>
+											<Td>{city.overFlowCnt.toLocaleString()}</Td>
+											<Td>{city.localOccCnt.toLocaleString()}</Td>
+										</Tr>
+									))}
+								</Tbody>
+							</Table>
+						</Box>
 					</Flex>
 				</Layout>
 			)}

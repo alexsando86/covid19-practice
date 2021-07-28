@@ -69,11 +69,11 @@ const NatInfoState = () => {
 								<TableCaption fontSize="md">코로나19 해외발생 현황</TableCaption>
 								<Thead>
 									<Tr>
-										<Th>국가명</Th>
-										<Th>지역명</Th>
-										<Th>국가별 확진자 수</Th>
-										<Th>국가별 사망자 수</Th>
-										<Th>확진률 대비 사망률</Th>
+										<Th className={styles.th}>국가명</Th>
+										<Th className={styles.th}>지역명</Th>
+										<Th className={styles.th}>국가별 확진자 수</Th>
+										<Th className={styles.th}>국가별 사망자 수</Th>
+										<Th className={styles.th}>확진률 대비 사망률</Th>
 									</Tr>
 								</Thead>
 								<Tbody>

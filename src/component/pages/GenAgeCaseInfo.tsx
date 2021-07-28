@@ -6,6 +6,7 @@ import Layout from "../Layout";
 import SpinnerBox from "../SpinnerBox";
 import { genAgeCaseInfoDispatch } from "../../redux/genAgeCaseInfoReducer";
 import moment from "moment";
+import styles from "./GenAgeCaseInfo.module.css";
 
 const GenAgeCaseInfo = () => {
 	const { genAgeCaseInfoReducer } = useSelector((state: any) => ({ genAgeCaseInfoReducer: state.genAgeCaseInfoReducer.data }));
@@ -55,12 +56,12 @@ const GenAgeCaseInfo = () => {
 							<TableCaption fontSize="md"></TableCaption>
 							<Thead>
 								<Tr>
-									<Th>구분(성별, 연령별)</Th>
-									<Th>확진자</Th>
-									<Th>확진률</Th>
-									<Th>사망자</Th>
-									<Th>사망률</Th>
-									<Th>치명률</Th>
+									<Th className={styles.th}>구분(성별, 연령별)</Th>
+									<Th className={styles.th}>확진자</Th>
+									<Th className={styles.th}>확진률</Th>
+									<Th className={styles.th}>사망자</Th>
+									<Th className={styles.th}>사망률</Th>
+									<Th className={styles.th}>치명률</Th>
 								</Tr>
 							</Thead>
 							<Tbody>
