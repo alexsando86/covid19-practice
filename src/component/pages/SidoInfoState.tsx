@@ -35,6 +35,13 @@ const Covid19State = () => {
 	// 도시명
 	const GUBUN = DEF_CNT?.filter((filItem: sidoItemTypes) => filItem.gubun !== "합계").map((item: sidoItemTypes) => item.gubun);
 
+	// 한글소팅
+	const hangleSort = DEF_CNT?.map((item: sidoItemTypes) => item).sort((a: sidoItemTypes, b: sidoItemTypes) => {
+		const item1 = a.gubun;
+		const item2 = b.gubun;
+		return item1.localeCompare(item2);
+	});
+
 	// 기준날짜
 	const currentDay = DEF_CNT?.find((day: { createDt: string }) => moment(day.createDt).format("YYYYMMDD"));
 
@@ -79,7 +86,7 @@ const Covid19State = () => {
 								</Tr>
 							</Thead>
 							<Tbody>
-								{DEF_CNT?.map((city: sidoItemTypes) => (
+								{hangleSort?.map((city: sidoItemTypes) => (
 									<Tr key={city.gubun}>
 										<Td>{city.gubun.toLocaleString()}</Td>
 										<Td>{city.defCnt.toLocaleString()}</Td>
