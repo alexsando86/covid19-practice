@@ -10,7 +10,7 @@ const Layout = ({ children, title }: childrenProps) => {
 	return (
 		<>
 			<Heading as="h2" size="md" p={4}>
-				{title}
+				코로나19 {title}
 			</Heading>
 			<SimpleGrid minChildWidth="375px" gap={6} w="100%" h="100%" p={4} overflow={{ md: "hidden" }}>
 				{children instanceof Array &&
