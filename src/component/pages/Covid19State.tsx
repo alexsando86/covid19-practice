@@ -29,7 +29,6 @@ const Covid19State = () => {
 			.slice(-15);
 
 	const TODAY_DATE = covid19InfooReducer && covid19InfooReducer.filter((item: { createDt: string }) => moment(item.createDt).format("YYYYMMDD") === moment(new Date()).format("YYYYMMDD"));
-	console.log(TODAY_DATE);
 
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);

@@ -1,4 +1,4 @@
-import { Box, Grid, useColorModeValue } from "@chakra-ui/react";
+import { Box, Grid, Heading, useColorModeValue } from "@chakra-ui/react";
 import moment from "moment";
 import React from "react";
 import { Line, Pie } from "react-chartjs-2";
