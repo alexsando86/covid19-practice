@@ -8,6 +8,17 @@ import { genAgeCaseInfoDispatch } from "../../redux/genAgeCaseInfoReducer";
 import moment from "moment";
 import styles from "./GenAgeCaseInfo.module.css";
 
+type genAgeTypes = {
+	confCase: number;
+	confCaseRate: number;
+	createDt: string;
+	criticalRate: number;
+	death: number;
+	deathRate: number;
+	gubun: string;
+	seq: number;
+};
+
 const GenAgeCaseInfo = () => {
 	const { genAgeCaseInfoReducer } = useSelector((state: any) => ({ genAgeCaseInfoReducer: state.genAgeCaseInfoReducer.data }));
 
@@ -16,6 +27,13 @@ const GenAgeCaseInfo = () => {
 	const setLoadingState = (state: boolean) => {
 		setIsLoading(state);
 	};
+
+	const CREACT_DT =
+		genAgeCaseInfoReducer &&
+		genAgeCaseInfoReducer
+			.map((date: genAgeTypes) => date)
+			.sort((a: genAgeTypes, b: genAgeTypes) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
+			.slice(-11);
 
 	useEffect(() => {
 		// 코로나19 연령별·성별감염 현황
@@ -27,29 +45,11 @@ const GenAgeCaseInfo = () => {
 		);
 	}, []);
 
-	type genAgeTypes = {
-		confCase: number;
-		confCaseRate: number;
-		createDt: string;
-		criticalRate: number;
-		death: number;
-		deathRate: number;
-		gubun: string;
-		seq: number;
-	};
-
-	const CREACT_DT =
-		genAgeCaseInfoReducer &&
-		genAgeCaseInfoReducer
-			.map((date: genAgeTypes) => date)
-			.sort((a: genAgeTypes, b: genAgeTypes) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
-			.slice(-11);
-
 	return (
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
-				<Layout title="공공데이터활용지원센터_보건복지부 코로나19 연령별·성별감염 현황">
+				<Layout title="연령별·성별감염 현황">
 					<GenAgeCaseInfoChart genAgeCaseInfoReducer={genAgeCaseInfoReducer && genAgeCaseInfoReducer} CREACT_DT={CREACT_DT} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>

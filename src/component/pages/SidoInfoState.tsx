@@ -28,6 +28,12 @@ export type sidoItemTypes = {
 const Covid19State = () => {
 	const { sidoInfoReducer } = useSelector((state: any) => ({ sidoInfoReducer: state.sidoInfoReducer.data }));
 
+	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(true);
+	const setLoadingState = (state: boolean) => {
+		setIsLoading(state);
+	};
+
 	const DEF_CNT = sidoInfoReducer
 		?.map((item: sidoItemTypes) => item)
 		.sort((a: any, b: any) => Number(moment(a.createDt).format("YYYYMMDD")) - Number(moment(b.createDt).format("YYYYMMDD")))
@@ -46,12 +52,6 @@ const Covid19State = () => {
 	// 기준날짜
 	const currentDay = DEF_CNT?.find((day: { createDt: string }) => moment(day.createDt).format("YYYYMMDD"));
 
-	const dispatch = useDispatch();
-	const [isLoading, setIsLoading] = useState(true);
-	const setLoadingState = (state: boolean) => {
-		setIsLoading(state);
-	};
-
 	useEffect(() => {
 		// 코로나19 시·도발생 현황
 		dispatch(
@@ -66,7 +66,7 @@ const Covid19State = () => {
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
-				<Layout title="공공데이터활용지원센터_보건복지부 코로나19 시·도발생 현황">
+				<Layout title="시·도발생 현황">
 					<SidoInfoStateChart DEF_CNT={DEF_CNT} GUBUN={GUBUN} isLoading={isLoading} sidoInfoReducer={sidoInfoReducer && sidoInfoReducer} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>

@@ -6,13 +6,16 @@ import moment from "moment";
 import Covid19StateChart from "../chart/Covid19StateChart";
 import { covid19InfoDispatch } from "../../redux/covid19InfooReducer";
 import SpinnerBox from "../SpinnerBox";
-import { sidoItemTypes } from "./SidoInfoState";
 import styles from "./Covid19State.module.css";
 
 const Covid19State = () => {
-	const { covid19InfooReducer } = useSelector((state: any) => ({
-		covid19InfooReducer: state.covid19InfooReducer.data,
-	}));
+	const { covid19InfooReducer } = useSelector((state: any) => ({ covid19InfooReducer: state.covid19InfooReducer.data }));
+
+	const dispatch = useDispatch();
+	const [isLoading, setIsLoading] = useState(true);
+	const setLoadingState = (state: boolean) => {
+		setIsLoading(state);
+	};
 
 	const STATE_DT =
 		covid19InfooReducer &&
@@ -29,12 +32,6 @@ const Covid19State = () => {
 			.slice(-15);
 
 	const TODAY_DATE = covid19InfooReducer && covid19InfooReducer.filter((item: { createDt: string }) => moment(item.createDt).format("YYYYMMDD") === moment(new Date()).format("YYYYMMDD"));
-
-	const dispatch = useDispatch();
-	const [isLoading, setIsLoading] = useState(true);
-	const setLoadingState = (state: boolean) => {
-		setIsLoading(state);
-	};
 
 	useEffect(() => {
 		// 코로나19 감염 현황
@@ -64,7 +61,7 @@ const Covid19State = () => {
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
-				<Layout title="공공데이터활용지원센터_보건복지부 코로나19 감염 현황">
+				<Layout title="감염 현황">
 					<Covid19StateChart STATE_DT={STATE_DT} DECIDE_CNT={DECIDE_CNT} TODAY_DATE={TODAY_DATE} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>
