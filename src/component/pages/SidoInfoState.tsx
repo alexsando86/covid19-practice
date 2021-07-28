@@ -37,8 +37,8 @@ const Covid19State = () => {
 
 	// 한글소팅
 	const hangleSort = DEF_CNT?.map((item: sidoItemTypes) => item).sort((a: sidoItemTypes, b: sidoItemTypes) => {
-		const item1 = a.gubun;
-		const item2 = b.gubun;
+		const item1: string = a.gubun;
+		const item2: string = b.gubun;
 		return item1.localeCompare(item2);
 	});
 
