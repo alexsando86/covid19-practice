@@ -78,6 +78,39 @@ const Covid19StateChart = ({ STATE_DT, DECIDE_CNT, TODAY_DATE }: any) => {
 			},
 		],
 	};
+	const pieOptions = {
+		plugins: {
+			legend: {
+				// display: false,
+				labels: {
+					color: ticksColor,
+				},
+			},
+		},
+		scales: {
+			xAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+					drawTicks: false,
+				},
+				ticks: {
+					// display: false,
+				},
+			},
+			yAxis: {
+				grid: {
+					borderColor: lineGraph,
+					color: lineGraph,
+					drawTicks: false,
+				},
+				ticks: {
+					display: false,
+				},
+			},
+		},
+		maintainAspectRatio: false,
+	};
 
 	return (
 		<Grid templateRows="repeat(2,1fr)" w="100%" h="100%">
@@ -85,7 +118,7 @@ const Covid19StateChart = ({ STATE_DT, DECIDE_CNT, TODAY_DATE }: any) => {
 				<Line data={data} options={options} />
 			</Box>
 			<Box p={4}>
-				<Pie data={pieData} options={options} />
+				<Pie data={pieData} options={pieOptions} />
 			</Box>
 		</Grid>
 	);
