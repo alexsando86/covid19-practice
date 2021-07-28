@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption } from "@chakra-ui/react";
+import { Flex, Table, Thead, Tbody, Tr, Th, Td, TableCaption, Heading, Box } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import GenAgeCaseInfoChart from "../chart/GenAgeCaseInfoChart";
 import Layout from "../Layout";
@@ -52,35 +52,41 @@ const GenAgeCaseInfo = () => {
 				<Layout title="공공데이터활용지원센터_보건복지부 코로나19 연령별·성별감염 현황">
 					<GenAgeCaseInfoChart genAgeCaseInfoReducer={genAgeCaseInfoReducer && genAgeCaseInfoReducer} CREACT_DT={CREACT_DT} />
 					<Flex flexDirection="column" w="100%" h="100%">
-						<Table variant="striped" size="sm" flex="1">
-							<TableCaption fontSize="md"></TableCaption>
-							<Thead>
-								<Tr>
-									<Th className={styles.th}>구분(성별, 연령별)</Th>
-									<Th className={styles.th}>확진자</Th>
-									<Th className={styles.th}>확진률</Th>
-									<Th className={styles.th}>사망자</Th>
-									<Th className={styles.th}>사망률</Th>
-									<Th className={styles.th}>치명률</Th>
-								</Tr>
-							</Thead>
-							<Tbody>
-								{CREACT_DT?.map((genAge: genAgeTypes) => {
-									const { gubun, confCase, confCaseRate, death, deathRate, criticalRate } = genAge;
-									const genAgeType = gubun.indexOf("남성") > -1 || gubun.indexOf("여성") > -1 || gubun.indexOf("80 이상") > -1 ? gubun : `${gubun}세`;
-									return (
-										<Tr key={gubun}>
-											<Td>{genAgeType}</Td>
-											<Td>{confCase.toLocaleString()}</Td>
-											<Td>{confCaseRate.toLocaleString()}</Td>
-											<Td>{death.toLocaleString()}</Td>
-											<Td>{deathRate.toLocaleString()}</Td>
-											<Td>{criticalRate.toLocaleString()}</Td>
-										</Tr>
-									);
-								})}
-							</Tbody>
-						</Table>
+						<Heading size="md" mb={4}>
+							누적 데이터
+						</Heading>
+
+						<Box h="100%" overflow="hidden" overflowY="auto" flex="1">
+							<Table variant="striped" size="sm" w="100%">
+								<TableCaption fontSize="md"></TableCaption>
+								<Thead>
+									<Tr>
+										<Th className={styles.th}>구분(성별, 연령별)</Th>
+										<Th className={styles.th}>확진자</Th>
+										<Th className={styles.th}>확진률</Th>
+										<Th className={styles.th}>사망자</Th>
+										<Th className={styles.th}>사망률</Th>
+										<Th className={styles.th}>치명률</Th>
+									</Tr>
+								</Thead>
+								<Tbody>
+									{CREACT_DT?.map((genAge: genAgeTypes) => {
+										const { gubun, confCase, confCaseRate, death, deathRate, criticalRate } = genAge;
+										const genAgeType = gubun.indexOf("남성") > -1 || gubun.indexOf("여성") > -1 || gubun.indexOf("80 이상") > -1 ? gubun : `${gubun}세`;
+										return (
+											<Tr key={gubun}>
+												<Td>{genAgeType}</Td>
+												<Td>{confCase.toLocaleString()}</Td>
+												<Td>{confCaseRate.toLocaleString()}</Td>
+												<Td>{death.toLocaleString()}</Td>
+												<Td>{deathRate.toLocaleString()}</Td>
+												<Td>{criticalRate.toLocaleString()}</Td>
+											</Tr>
+										);
+									})}
+								</Tbody>
+							</Table>
+						</Box>
 					</Flex>
 				</Layout>
 			)}

@@ -74,7 +74,7 @@ const Covid19State = () => {
 						</Heading>
 
 						<Box h="100%" overflow="hidden" overflowY="auto" flex="1">
-							<Table variant="striped" size="sm" w="100%" h="100%" flex="1">
+							<Table variant="striped" size="sm" w="100%">
 								<TableCaption fontSize="md">{`${moment(currentDay?.createDt).format("YYYY-MM-DD")}`}</TableCaption>
 								<Thead>
 									<Tr>
