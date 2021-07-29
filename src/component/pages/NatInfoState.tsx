@@ -57,7 +57,7 @@ const NatInfoState = () => {
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
-				<Layout title="공공데이터활용지원센터_보건복지부 코로나19해외발생 현황">
+				<Layout title="해외발생 현황">
 					<NatInfoStateChart isLoading={isLoading} CREATE_DT={CREATE_DT} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>
