@@ -16,7 +16,7 @@ type dataTypes = {
 	}[];
 };
 
-const NatInfoStateChart = ({ CREATE_DT, setNational }: any) => {
+const NatInfoStateChart = ({ CREATE_DT }: any) => {
 	const NATIONAL = CREATE_DT.filter((item: any) => item.nationNm === "한국" || item.nationNm === "대만" || item.nationNm === "중국" || item.nationNm === "베트남" || item.nationNm === "일본" || item.nationNm === "뉴질랜드" || item.nationNm === "태국");
 
 	const NATIONAL_DATA = NATIONAL.map((item: any) => item.natDefCnt);

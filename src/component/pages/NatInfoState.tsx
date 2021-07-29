@@ -36,8 +36,6 @@ const NatInfoState = () => {
 		setIsLoading(state);
 	};
 
-	const [national, setNational] = useState("");
-
 	const CREATE_DT =
 		overseasReducer &&
 		overseasReducer
@@ -55,14 +53,12 @@ const NatInfoState = () => {
 		);
 	}, []);
 
-	console.log(national);
-
 	return (
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
 				<Layout title="해외발생 현황">
-					<NatInfoStateChart isLoading={isLoading} CREATE_DT={CREATE_DT} setNational={setNational} />
+					<NatInfoStateChart isLoading={isLoading} CREATE_DT={CREATE_DT} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>
 							해외발생 현황
