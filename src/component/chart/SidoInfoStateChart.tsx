@@ -1,6 +1,7 @@
 import React from "react";
 import { Bar, Doughnut } from "react-chartjs-2";
 import { Box, Grid, useColorModeValue } from "@chakra-ui/react";
+import MakeRandomColor from "../../util/MakeRandomColor";
 
 const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 	type itemTypes = {
@@ -21,14 +22,16 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 	};
 
 	// Random Color
-	let colorArray: string[] = [];
-	const randomColor = () => Math.floor(Math.random() * 255);
-	const setRgbaColor = (count: number) => {
-		for (let i = 0; i < count; i++) {
-			colorArray.push(`rgba(${randomColor()},${randomColor()},${randomColor()}, 0.7)`);
-		}
-	};
-	setRgbaColor(DEF_CNT?.length);
+	// let colorArray: string[] = [];
+	// const randomColor = () => Math.floor(Math.random() * 255);
+	// const setRgbaColor = (count: number) => {
+	// 	for (let i = 0; i < count; i++) {
+	// 		colorArray.push(`rgba(${randomColor()},${randomColor()},${randomColor()}, 0.7)`);
+	// 	}
+	// };
+	// setRgbaColor(DEF_CNT?.length);
+
+	const setRandomColor = new MakeRandomColor(DEF_CNT?.length);
 
 	type dataTypes = {
 		labels: string[];
@@ -46,7 +49,7 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 			{
 				label: GUBUN,
 				data: DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.defCnt),
-				backgroundColor: colorArray,
+				backgroundColor: setRandomColor.setRgbaColor(),
 				borderWidth: 1,
 			},
 		],
@@ -93,7 +96,7 @@ const SidoInfoStateChart = ({ DEF_CNT, GUBUN }: any) => {
 			{
 				label: "지역별 현황",
 				data: DEF_CNT?.filter((filItem: itemTypes) => filItem.gubun !== "합계").map((item: itemTypes) => item.defCnt),
-				backgroundColor: colorArray,
+				backgroundColor: setRandomColor.setRgbaColor(),
 				borderWidth: 1,
 			},
 		],

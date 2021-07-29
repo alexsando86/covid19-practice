@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Box, Flex, Heading, Table, TableCaption, Tbody, Td, Th, Thead, Tr } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { overseasDispatch } from "../../redux/overseasReducer";
-import NatInfoStateChart from "../chart/NatInfoStateChart";
 import Layout from "../Layout";
 import SpinnerBox from "../SpinnerBox";
 import moment from "moment";
 import styles from "./NatInfoState.module.css";
+import NatInfoStateChart from "../chart/NatInfoStateChart";
 
 export type overSeasTypes = {
 	data: [
@@ -36,6 +36,8 @@ const NatInfoState = () => {
 		setIsLoading(state);
 	};
 
+	const [national, setNational] = useState("");
+
 	const CREATE_DT =
 		overseasReducer &&
 		overseasReducer
@@ -53,12 +55,14 @@ const NatInfoState = () => {
 		);
 	}, []);
 
+	console.log(national);
+
 	return (
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
 				<Layout title="해외발생 현황">
-					<NatInfoStateChart isLoading={isLoading} CREATE_DT={CREATE_DT} />
+					<NatInfoStateChart isLoading={isLoading} CREATE_DT={CREATE_DT} setNational={setNational} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>
 							해외발생 현황

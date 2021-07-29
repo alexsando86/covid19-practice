@@ -1,6 +1,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import { Bar } from "react-chartjs-2";
+import MakeRandomColor from "../../util/MakeRandomColor";
 
 type dataTypes = {
 	labels: string[];
@@ -15,7 +16,7 @@ type dataTypes = {
 	}[];
 };
 
-const NatInfoStateChart = ({ CREATE_DT }: any) => {
+const NatInfoStateChart = ({ CREATE_DT, setNational }: any) => {
 	const NATIONAL = CREATE_DT.filter((item: any) => item.nationNm === "한국" || item.nationNm === "대만" || item.nationNm === "중국" || item.nationNm === "베트남" || item.nationNm === "일본" || item.nationNm === "뉴질랜드" || item.nationNm === "태국");
 
 	const NATIONAL_DATA = NATIONAL.map((item: any) => item.natDefCnt);
@@ -24,20 +25,23 @@ const NatInfoStateChart = ({ CREATE_DT }: any) => {
 	const lineGraph = useColorModeValue("rgba(229, 229, 229)", "rgba(255,255,255,0.5)");
 	const ticksColor = useColorModeValue("gray.200", "#fff");
 
+	const setRandomColor = new MakeRandomColor(NATIONAL.length);
+
 	const data: dataTypes = {
 		labels: NATIONAL_NAME,
 		datasets: [
 			{
 				axis: "y",
-				label: "My First Dataset",
+				label: "확진자 수",
 				data: NATIONAL_DATA,
 				fill: false,
-				backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(255, 205, 86, 0.2)", "rgba(75, 192, 192, 0.2)", "rgba(54, 162, 235, 0.2)", "rgba(153, 102, 255, 0.2)", "rgba(201, 203, 207, 0.2)"],
-				borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(255, 205, 86)", "rgb(75, 192, 192)", "rgb(54, 162, 235)", "rgb(153, 102, 255)", "rgb(201, 203, 207)"],
+				backgroundColor: setRandomColor.setRgbaColor(),
+				borderColor: setRandomColor.setRgbaColor(),
 				borderWidth: 1,
 			},
 		],
 	};
+
 	const options = {
 		indexAxis: "y",
 		plugins: {

@@ -66,7 +66,7 @@ const Covid19State = () => {
 		<>
 			{isLoading && <SpinnerBox />}
 			{!isLoading && (
-				<Layout title="시·도발생 현황">
+				<Layout title="시·도발생 현황 (확진자 수)">
 					<SidoInfoStateChart DEF_CNT={DEF_CNT} GUBUN={GUBUN} isLoading={isLoading} sidoInfoReducer={sidoInfoReducer && sidoInfoReducer} />
 					<Flex flexDirection="column" w="100%" h="100%">
 						<Heading size="md" mb={4}>
