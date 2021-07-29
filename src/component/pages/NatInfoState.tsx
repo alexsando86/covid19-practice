@@ -65,7 +65,7 @@ const NatInfoState = () => {
 						</Heading>
 
 						<Box h="100%" overflow="hidden" overflowY="auto" flex="1">
-							<Table variant="striped" size="sm" w="100%">
+							<Table variant="striped" size="sm" w="100%" className={styles.table}>
 								<TableCaption fontSize="md">코로나19 해외발생 현황</TableCaption>
 								<Thead>
 									<Tr>

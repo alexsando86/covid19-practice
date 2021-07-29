@@ -1,13 +1,31 @@
 .nav {
 	font-size: 12px;
 }
-.nav ul {
+.ul {
 	display: flex;
 	height: 50px;
 	align-items: center;
+	list-style: none;
 }
-.nav li {
+.ul li {
 	text-align: center;
 	line-height: 16px;
 	margin-left: 15px;
+	font-size: 15px;
+	list-style: none;
+}
+.unList ul {
+	list-style: none;
+	margin: 0;
+	width: 100%;
+}
+.unList li {
+	padding: 0;
+	margin: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+.unList li a {
+	display: block;
+	padding: 10px 0;
+	font-size: 12px;
 }

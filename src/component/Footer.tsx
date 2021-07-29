@@ -8,7 +8,7 @@ const Footer = () => {
 			<a href="https://www.data.go.kr/index.do" target="_blank" rel="noreferrer">
 				https://www.data.go.kr/index.do
 			</a>
-			)<p>Copyright © alexsando. All Rights Reserved.</p>
+			)<p>alexsando</p>
 		</Box>
 	);
 };
