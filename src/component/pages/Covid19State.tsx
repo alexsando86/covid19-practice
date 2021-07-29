@@ -70,7 +70,7 @@ const Covid19State = () => {
 						</Heading>
 						<Box h="100%" overflow="hidden" overflowY="auto" flex="1">
 							<Table variant="striped" size="sm" flex="1">
-								<TableCaption fontSize="md">{isNaN(TODAY_CONFIRMED_CASE) ? "10시 이후 오늘의 확진자 수 확인 가능합니다." : `오늘 확진자 수 : ${TODAY_CONFIRMED_CASE.toLocaleString()}명`}</TableCaption>
+								<TableCaption fontSize="md">{isNaN(TODAY_CONFIRMED_CASE) ? "매일 오전 10시 이후에 데이터 업데이트됩니다." : `오늘 확진자 수 : ${TODAY_CONFIRMED_CASE.toLocaleString()}명`}</TableCaption>
 								<Thead>
 									<Tr>
 										<Th className={styles.th}>기준일</Th>
