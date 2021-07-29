@@ -6,8 +6,8 @@ import moment from "moment";
 import Covid19StateChart from "../chart/Covid19StateChart";
 import { covid19InfoDispatch } from "../../redux/covid19InfooReducer";
 import SpinnerBox from "../SpinnerBox";
-import { sidoItemTypes } from "./SidoInfoState";
 import styles from "./Covid19State.module.css";
+import { getToday, getYesterday } from "../../asyncGetData";
 
 const Covid19State = () => {
 	const { covid19InfooReducer } = useSelector((state: any) => ({
@@ -28,7 +28,7 @@ const Covid19State = () => {
 			.sort((a: number, b: number) => a - b)
 			.slice(-15);
 
-	const TODAY_DATE = covid19InfooReducer && covid19InfooReducer.filter((item: { createDt: string }) => moment(item.createDt).format("YYYYMMDD") === moment(new Date()).format("YYYYMMDD"));
+	const TODAY_DATE = covid19InfooReducer && covid19InfooReducer.filter((item: { createDt: string }) => moment(item.createDt).format("YYYYMMDD") === getToday || moment(item.createDt).format("YYYYMMDD") === getYesterday);
 
 	const dispatch = useDispatch();
 	const [isLoading, setIsLoading] = useState(true);

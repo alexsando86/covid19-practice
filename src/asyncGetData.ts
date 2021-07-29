@@ -11,15 +11,16 @@ const month2 = ("0" + today.getMonth()).slice(-2); // 전월
 const date = ("0" + today.getDate()).slice(-2);
 const yesterday = ("0" + (today.getDate() - 1)).slice(-2);
 
-const getToday: string = `${year}${month}${date}`;
-const getYesterday: string = `${year}${month2}${yesterday}`;
+export const getToday: string = `${year}${month}${date}`;
+export const getYesterday: string = `${year}${month}${yesterday}`;
+export const lastMonth: string = `${year}${month2}${date}`;
 
 const SERVICE_KEY: string | undefined = process.env.REACT_APP_SERVICE_KEY;
 
 let queryParams = "?" + encodeURIComponent("ServiceKey") + "=" + SERVICE_KEY; /*Service Key*/
-queryParams += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent("1"); /* 페이지번호*/
-queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("10"); /* 한 페이지 결과 수 */
-queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(getYesterday); /* 검색할 생성일 시작 */
+// queryParams += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent("1"); /* 페이지번호*/
+// queryParams += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("10"); /* 한 페이지 결과 수 */
+queryParams += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(lastMonth); /* 검색할 생성일 시작 */
 queryParams += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(getToday); /* 검색할 생성일 종료 */
 
 const fetchAPI = async (url: string) => {
